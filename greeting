@@ -1,5 +1,13 @@
 #!/bin/bash
 
-NAME=$*
+ID=$1
 TS=$(date "+%Y-%m-%d %H:%M:%S")
+NAME=$(grep $ID name.list 2>/dev/null | cut -d' ' -f2)
+
+# The space between "$NAME"/==/"" is necessary
+if [[ "" == "$NAME" ]]
+then
+        NAME="Nameless One"
+fi
+
 echo "[$TS] hello $NAME"
